@@ -1,0 +1,18 @@
+%define lookup-function-name lookupGeneratedInit
+%define class-name AndroidTitaniumParseBindings
+%{
+
+#include <string.h>
+#include <v8.h>
+#include <KrollBindings.h>
+
+#include "com.ez2010.androidtitaniumparse.AndroidTitaniumParseModule.h"
+#include "com.ez2010.androidtitaniumparse.ExampleProxy.h"
+
+
+%}
+struct titanium::bindings::BindEntry;
+%%
+com.ez2010.androidtitaniumparse.AndroidTitaniumParseModule, ::com::ez2010::androidtitaniumparse::AndroidTitaniumParseModule::bindProxy, ::com::ez2010::androidtitaniumparse::AndroidTitaniumParseModule::dispose
+com.ez2010.androidtitaniumparse.ExampleProxy, ::com::ez2010::androidtitaniumparse::androidtitaniumparse::ExampleProxy::bindProxy, ::com::ez2010::androidtitaniumparse::androidtitaniumparse::ExampleProxy::dispose
+%%
