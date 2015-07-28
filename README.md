@@ -15,4 +15,4 @@ with changed below
   // unsubscribe from all channels and no need to get channel list first.
 
 <b>public void registerForMultiplePushChannel()</b>
-// register to multiple channels in one call. (old channels will be overite).
+// register to multiple channels in one call. (old channels will be overidden).
