@@ -228,6 +228,18 @@ public class AndroidTitaniumParseModule extends KrollModule
 	}
 
 	@Kroll.method
+	public void registerForMultiplePushChannel(String deviceToken, String[] channelName, KrollFunction applicationCallback) {
+		// NOTE: deviceToken is not used, but in order to maintain call
+		// compatibility with the iOS module, I'm leaving it as a parameter
+		parseSingleton.SubscribeToMultiplePushChannel(channelName);
+		
+		// This is just a fake call back function the saveEventually() function will be used and no need for callback
+		HashMap results = new HashMap();
+		results.put("success", true);
+		applicationCallback.callAsync(getKrollObject(), results);
+	}
+
+	@Kroll.method
 	public void unsubscribeFromAllChannels(KrollFunction applicationCallback) {
 		// NOTE: deviceToken is not used, but in order to maintain call
 		// compatibility with the iOS module, I'm leaving it as a parameter

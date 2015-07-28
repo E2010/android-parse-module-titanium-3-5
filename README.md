@@ -13,3 +13,6 @@ with changed below
 
 <b>public void unsubscribeFromAllChannels()</b>
   // unsubscribe from all channels and no need to get channel list first.
+
+<b>public void registerForMultiplePushChannel()</b>
+// register to multiple channels in one call. (old channels will be overite).

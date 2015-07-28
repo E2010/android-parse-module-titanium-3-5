@@ -27,6 +27,7 @@ SOFTWARE.
 package com.ez2010.androidtitaniumparse;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -166,6 +167,16 @@ public class ParseSingleton {
 	  ArrayList<String> channelList = new ArrayList<String>();
 	  channelList.add(channelName);
 
+	  ParseInstallation currentInstallation = ParseInstallation.getCurrentInstallation();
+	  currentInstallation.put("channels", channelList);
+	  currentInstallation.saveEventually();
+  }
+
+  public void SubscribeToMultiplePushChannel(String[] channels){
+	  ArrayList<String> channelList = new ArrayList<String>();
+	  //channelList.add(channelName);
+	  channelList.addAll(Arrays.asList(channels));
+	  
 	  ParseInstallation currentInstallation = ParseInstallation.getCurrentInstallation();
 	  currentInstallation.put("channels", channelList);
 	  currentInstallation.saveEventually();
