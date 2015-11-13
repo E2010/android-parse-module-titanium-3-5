@@ -37,7 +37,7 @@ Some how, the compile need these 2 folder but Appcelerator Studio does not creat
     2. android/build/.apt_generated (Keep the ".", it is a invisible folder for Mac. Titanium Studio might not need this.)
 
 <b>5. Parse Initial </b>
-The module is good to compile now. But if you test it with a new App, remember put properties into tiapp.xml with Your Own Parse Keys.
+The module is good to compile now. But if you test it with a new App, remember to put these properties into tiapp.xml with Your Own Parse Keys.
 
     <property name="Parse_AppId">YourOwnParseAppID</property>
     <property name="Parse_ClientKey">YourOwnParseClientKey</property>
