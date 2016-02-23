@@ -228,10 +228,37 @@ public class AndroidTitaniumParseModule extends KrollModule
 	}
 
 	@Kroll.method
-	public void registerForMultiplePushChannel(String deviceToken, String[] channelName, KrollFunction applicationCallback) {
+	public void registerForMultiplePushChannel(String deviceToken, String channels, KrollFunction applicationCallback) {
+		Log.d(LCAT, "String String Callback");
+		Log.d(LCAT, channels);
+		
+		String[] channelNames = channels.split(",");
+		
+		for ( String s: channelNames){
+			Log.d(LCAT, s);
+		}
+		
+		registerForMultiplePushChannel(deviceToken, channelNames, applicationCallback);
+
 		// NOTE: deviceToken is not used, but in order to maintain call
 		// compatibility with the iOS module, I'm leaving it as a parameter
-		parseSingleton.SubscribeToMultiplePushChannel(channelName);
+		//parseSingleton.SubscribeToMultiplePushChannel(channelName);
+		
+		// This is just a fake call back function the saveEventually() function will be used and no need for callback
+		//HashMap results = new HashMap();
+		//results.put("success", true);
+		//applicationCallback.callAsync(getKrollObject(), results);
+	}
+
+	@Kroll.method
+	public void registerForMultiplePushChannel(String deviceToken, String[] channelNames, KrollFunction applicationCallback) {
+		Log.d(LCAT, "String StringArray Callback");
+		for ( String s: channelNames){
+			Log.d(LCAT, s);
+		}
+		// NOTE: deviceToken is not used, but in order to maintain call
+		// compatibility with the iOS module, I'm leaving it as a parameter
+		parseSingleton.SubscribeToMultiplePushChannel(channelNames);
 		
 		// This is just a fake call back function the saveEventually() function will be used and no need for callback
 		HashMap results = new HashMap();

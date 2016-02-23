@@ -115,7 +115,7 @@ public class ParseSingleton {
       return;
     }
     else {
-      PushService.setDefaultPushCallback(appContext, appActivity.getClass());
+      //PushService.setDefaultPushCallback(appContext, appActivity.getClass());
       ParseAnalytics.trackAppOpened(appActivity.getIntent());
       ParseInstallation.getCurrentInstallation().saveInBackground();
     }
@@ -164,22 +164,58 @@ public class ParseSingleton {
   }
   
   public void SubscribeToSinglePushChannel(String channelName){
+	// Get current Channel list
+	List<String> currentChannels = ChannelSubscriptionList();
+	if (currentChannels != null) {
+	  for (String c : currentChannels) {
+	    if (!c.equals(channelName)) {
+		  UnsubscribeFromPushChannel(c);
+	    }
+	  }
+	}
+	
+	SubscribeToPushChannel(channelName);
+	/*
 	  ArrayList<String> channelList = new ArrayList<String>();
 	  channelList.add(channelName);
 
 	  ParseInstallation currentInstallation = ParseInstallation.getCurrentInstallation();
-	  currentInstallation.put("channels", channelList);
+	  currentInstallation.put("channelsoverride", channelList);
 	  currentInstallation.saveEventually();
+	  */
   }
 
   public void SubscribeToMultiplePushChannel(String[] channels){
-	  ArrayList<String> channelList = new ArrayList<String>();
+	// Get current channels
+	List<String> currentChannels = ChannelSubscriptionList();
+	
+	// New channel list
+	List<String> newChannels = new ArrayList<String>();
+	newChannels.addAll(Arrays.asList(channels));
+	
+	if (currentChannels != null) {
+	  for (String c : currentChannels) {
+		if (newChannels !=null) {
+          if (!newChannels.contains(c)) {
+    		  UnsubscribeFromPushChannel(c);
+          }
+		} else {
+		  UnsubscribeFromPushChannel(c);
+		}
+	  }
+	}
+	
+	for (String nc: newChannels) {
+	  SubscribeToPushChannel(nc);
+	}
+	  /*
+	  List<String> channelList = new ArrayList<String>();
 	  //channelList.add(channelName);
 	  channelList.addAll(Arrays.asList(channels));
 	  
 	  ParseInstallation currentInstallation = ParseInstallation.getCurrentInstallation();
-	  currentInstallation.put("channels", channelList);
-	  currentInstallation.saveEventually();
+	  currentInstallation.put("channelsmultiple", channelList);
+	  currentInstallation.saveEventually();*/
   }
 
   public void UnsubscribeFromPushChannel(String channelName) {

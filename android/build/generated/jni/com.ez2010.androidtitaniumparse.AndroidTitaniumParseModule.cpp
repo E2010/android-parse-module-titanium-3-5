@@ -90,17 +90,18 @@ Handle<FunctionTemplate> AndroidTitaniumParseModule::getProxyTemplate()
 	titanium::ProxyFactory::registerProxyPair(javaClass, *proxyTemplate);
 
 	// Method bindings --------------------------------------------------------
-	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "deleteObject", AndroidTitaniumParseModule::deleteObject);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "createObject", AndroidTitaniumParseModule::createObject);
+	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "deleteObject", AndroidTitaniumParseModule::deleteObject);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "registerForPush", AndroidTitaniumParseModule::registerForPush);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "unsubscribeFromPush", AndroidTitaniumParseModule::unsubscribeFromPush);
+	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "registerForMultiplePushChannel", AndroidTitaniumParseModule::registerForMultiplePushChannel);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "pushChannelList", AndroidTitaniumParseModule::pushChannelList);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "registerForSinglePushChannel", AndroidTitaniumParseModule::registerForSinglePushChannel);
-	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "unsubscribeFromAllChannels", AndroidTitaniumParseModule::unsubscribeFromAllChannels);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "example", AndroidTitaniumParseModule::example);
+	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "unsubscribeFromAllChannels", AndroidTitaniumParseModule::unsubscribeFromAllChannels);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "initParse", AndroidTitaniumParseModule::initParse);
-	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "updateObject", AndroidTitaniumParseModule::updateObject);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "registerForPushOverwrite", AndroidTitaniumParseModule::registerForPushOverwrite);
+	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "updateObject", AndroidTitaniumParseModule::updateObject);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "findObjects", AndroidTitaniumParseModule::findObjects);
 
 	Local<ObjectTemplate> prototypeTemplate = proxyTemplate->PrototypeTemplate();
@@ -124,99 +125,6 @@ Handle<FunctionTemplate> AndroidTitaniumParseModule::getProxyTemplate()
 }
 
 // Methods --------------------------------------------------------------------
-Handle<Value> AndroidTitaniumParseModule::deleteObject(const Arguments& args)
-{
-	LOGD(TAG, "deleteObject()");
-	HandleScope scope;
-
-	JNIEnv *env = titanium::JNIScope::getEnv();
-	if (!env) {
-		return titanium::JSException::GetJNIEnvironmentError();
-	}
-	static jmethodID methodID = NULL;
-	if (!methodID) {
-		methodID = env->GetMethodID(AndroidTitaniumParseModule::javaClass, "deleteObject", "(Ljava/lang/String;Ljava/lang/String;Lorg/appcelerator/kroll/KrollFunction;)V");
-		if (!methodID) {
-			const char *error = "Couldn't find proxy method 'deleteObject' with signature '(Ljava/lang/String;Ljava/lang/String;Lorg/appcelerator/kroll/KrollFunction;)V'";
-			LOGE(TAG, error);
-				return titanium::JSException::Error(error);
-		}
-	}
-
-	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
-
-	if (args.Length() < 3) {
-		char errorStringBuffer[100];
-		sprintf(errorStringBuffer, "deleteObject: Invalid number of arguments. Expected 3 but got %d", args.Length());
-		return ThrowException(Exception::Error(String::New(errorStringBuffer)));
-	}
-
-	jvalue jArguments[3];
-
-
-
-
-	
-	
-	if (!args[0]->IsNull()) {
-		Local<Value> arg_0 = args[0];
-		jArguments[0].l =
-			titanium::TypeConverter::jsValueToJavaString(env, arg_0);
-	} else {
-		jArguments[0].l = NULL;
-	}
-
-	
-	
-	if (!args[1]->IsNull()) {
-		Local<Value> arg_1 = args[1];
-		jArguments[1].l =
-			titanium::TypeConverter::jsValueToJavaString(env, arg_1);
-	} else {
-		jArguments[1].l = NULL;
-	}
-
-	bool isNew_2;
-	
-	if (!args[2]->IsNull()) {
-		Local<Value> arg_2 = args[2];
-		jArguments[2].l =
-			titanium::TypeConverter::jsValueToJavaObject(env, arg_2, &isNew_2);
-	} else {
-		jArguments[2].l = NULL;
-	}
-
-	jobject javaProxy = proxy->getJavaObject();
-	env->CallVoidMethodA(javaProxy, methodID, jArguments);
-
-	if (!JavaObject::useGlobalRefs) {
-		env->DeleteLocalRef(javaProxy);
-	}
-
-
-
-				env->DeleteLocalRef(jArguments[0].l);
-
-
-				env->DeleteLocalRef(jArguments[1].l);
-
-
-			if (isNew_2) {
-				env->DeleteLocalRef(jArguments[2].l);
-			}
-
-
-	if (env->ExceptionCheck()) {
-		titanium::JSException::fromJavaException();
-		env->ExceptionClear();
-	}
-
-
-
-
-	return v8::Undefined();
-
-}
 Handle<Value> AndroidTitaniumParseModule::createObject(const Arguments& args)
 {
 	LOGD(TAG, "createObject()");
@@ -294,6 +202,99 @@ Handle<Value> AndroidTitaniumParseModule::createObject(const Arguments& args)
 			if (isNew_1) {
 				env->DeleteLocalRef(jArguments[1].l);
 			}
+
+
+			if (isNew_2) {
+				env->DeleteLocalRef(jArguments[2].l);
+			}
+
+
+	if (env->ExceptionCheck()) {
+		titanium::JSException::fromJavaException();
+		env->ExceptionClear();
+	}
+
+
+
+
+	return v8::Undefined();
+
+}
+Handle<Value> AndroidTitaniumParseModule::deleteObject(const Arguments& args)
+{
+	LOGD(TAG, "deleteObject()");
+	HandleScope scope;
+
+	JNIEnv *env = titanium::JNIScope::getEnv();
+	if (!env) {
+		return titanium::JSException::GetJNIEnvironmentError();
+	}
+	static jmethodID methodID = NULL;
+	if (!methodID) {
+		methodID = env->GetMethodID(AndroidTitaniumParseModule::javaClass, "deleteObject", "(Ljava/lang/String;Ljava/lang/String;Lorg/appcelerator/kroll/KrollFunction;)V");
+		if (!methodID) {
+			const char *error = "Couldn't find proxy method 'deleteObject' with signature '(Ljava/lang/String;Ljava/lang/String;Lorg/appcelerator/kroll/KrollFunction;)V'";
+			LOGE(TAG, error);
+				return titanium::JSException::Error(error);
+		}
+	}
+
+	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
+
+	if (args.Length() < 3) {
+		char errorStringBuffer[100];
+		sprintf(errorStringBuffer, "deleteObject: Invalid number of arguments. Expected 3 but got %d", args.Length());
+		return ThrowException(Exception::Error(String::New(errorStringBuffer)));
+	}
+
+	jvalue jArguments[3];
+
+
+
+
+	
+	
+	if (!args[0]->IsNull()) {
+		Local<Value> arg_0 = args[0];
+		jArguments[0].l =
+			titanium::TypeConverter::jsValueToJavaString(env, arg_0);
+	} else {
+		jArguments[0].l = NULL;
+	}
+
+	
+	
+	if (!args[1]->IsNull()) {
+		Local<Value> arg_1 = args[1];
+		jArguments[1].l =
+			titanium::TypeConverter::jsValueToJavaString(env, arg_1);
+	} else {
+		jArguments[1].l = NULL;
+	}
+
+	bool isNew_2;
+	
+	if (!args[2]->IsNull()) {
+		Local<Value> arg_2 = args[2];
+		jArguments[2].l =
+			titanium::TypeConverter::jsValueToJavaObject(env, arg_2, &isNew_2);
+	} else {
+		jArguments[2].l = NULL;
+	}
+
+	jobject javaProxy = proxy->getJavaObject();
+	env->CallVoidMethodA(javaProxy, methodID, jArguments);
+
+	if (!JavaObject::useGlobalRefs) {
+		env->DeleteLocalRef(javaProxy);
+	}
+
+
+
+				env->DeleteLocalRef(jArguments[0].l);
+
+
+				env->DeleteLocalRef(jArguments[1].l);
 
 
 			if (isNew_2) {
@@ -485,6 +486,104 @@ Handle<Value> AndroidTitaniumParseModule::unsubscribeFromPush(const Arguments& a
 	return v8::Undefined();
 
 }
+Handle<Value> AndroidTitaniumParseModule::registerForMultiplePushChannel(const Arguments& args)
+{
+	LOGD(TAG, "registerForMultiplePushChannel()");
+	HandleScope scope;
+
+	JNIEnv *env = titanium::JNIScope::getEnv();
+	if (!env) {
+		return titanium::JSException::GetJNIEnvironmentError();
+	}
+	static jmethodID methodID = NULL;
+	if (!methodID) {
+		methodID = env->GetMethodID(AndroidTitaniumParseModule::javaClass, "registerForMultiplePushChannel", "(Ljava/lang/String;[Ljava/lang/String;Lorg/appcelerator/kroll/KrollFunction;)V");
+		if (!methodID) {
+			const char *error = "Couldn't find proxy method 'registerForMultiplePushChannel' with signature '(Ljava/lang/String;[Ljava/lang/String;Lorg/appcelerator/kroll/KrollFunction;)V'";
+			LOGE(TAG, error);
+				return titanium::JSException::Error(error);
+		}
+	}
+
+	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
+
+	if (args.Length() < 3) {
+		char errorStringBuffer[100];
+		sprintf(errorStringBuffer, "registerForMultiplePushChannel: Invalid number of arguments. Expected 3 but got %d", args.Length());
+		return ThrowException(Exception::Error(String::New(errorStringBuffer)));
+	}
+
+	jvalue jArguments[3];
+
+
+
+
+	
+	
+	if (!args[0]->IsNull()) {
+		Local<Value> arg_0 = args[0];
+		jArguments[0].l =
+			titanium::TypeConverter::jsValueToJavaString(env, arg_0);
+	} else {
+		jArguments[0].l = NULL;
+	}
+
+	if (!args[1]->IsArray() && !args[1]->IsNull()) {
+		const char *error = "Invalid value, expected type Array.";
+		LOGE(TAG, error);
+		return titanium::JSException::Error(error);
+	}
+	
+	
+	if (!args[1]->IsNull()) {
+		Local<Array> arg_1 = Local<Array>::Cast(args[1]);
+		jArguments[1].l =
+			titanium::TypeConverter::jsArrayToJavaStringArray(env, arg_1);
+	} else {
+		jArguments[1].l = NULL;
+	}
+
+	bool isNew_2;
+	
+	if (!args[2]->IsNull()) {
+		Local<Value> arg_2 = args[2];
+		jArguments[2].l =
+			titanium::TypeConverter::jsValueToJavaObject(env, arg_2, &isNew_2);
+	} else {
+		jArguments[2].l = NULL;
+	}
+
+	jobject javaProxy = proxy->getJavaObject();
+	env->CallVoidMethodA(javaProxy, methodID, jArguments);
+
+	if (!JavaObject::useGlobalRefs) {
+		env->DeleteLocalRef(javaProxy);
+	}
+
+
+
+				env->DeleteLocalRef(jArguments[0].l);
+
+
+				env->DeleteLocalRef(jArguments[1].l);
+
+
+			if (isNew_2) {
+				env->DeleteLocalRef(jArguments[2].l);
+			}
+
+
+	if (env->ExceptionCheck()) {
+		titanium::JSException::fromJavaException();
+		env->ExceptionClear();
+	}
+
+
+
+
+	return v8::Undefined();
+
+}
 Handle<Value> AndroidTitaniumParseModule::pushChannelList(const Arguments& args)
 {
 	LOGD(TAG, "pushChannelList()");
@@ -645,6 +744,58 @@ Handle<Value> AndroidTitaniumParseModule::registerForSinglePushChannel(const Arg
 	return v8::Undefined();
 
 }
+Handle<Value> AndroidTitaniumParseModule::example(const Arguments& args)
+{
+	LOGD(TAG, "example()");
+	HandleScope scope;
+
+	JNIEnv *env = titanium::JNIScope::getEnv();
+	if (!env) {
+		return titanium::JSException::GetJNIEnvironmentError();
+	}
+	static jmethodID methodID = NULL;
+	if (!methodID) {
+		methodID = env->GetMethodID(AndroidTitaniumParseModule::javaClass, "example", "()Ljava/lang/String;");
+		if (!methodID) {
+			const char *error = "Couldn't find proxy method 'example' with signature '()Ljava/lang/String;'";
+			LOGE(TAG, error);
+				return titanium::JSException::Error(error);
+		}
+	}
+
+	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
+
+	jvalue* jArguments = 0;
+
+	jobject javaProxy = proxy->getJavaObject();
+	jstring jResult = (jstring)env->CallObjectMethodA(javaProxy, methodID, jArguments);
+
+
+
+	if (!JavaObject::useGlobalRefs) {
+		env->DeleteLocalRef(javaProxy);
+	}
+
+
+
+	if (env->ExceptionCheck()) {
+		Handle<Value> jsException = titanium::JSException::fromJavaException();
+		env->ExceptionClear();
+		return jsException;
+	}
+
+	if (jResult == NULL) {
+		return Null();
+	}
+
+	Handle<Value> v8Result = titanium::TypeConverter::javaStringToJsString(env, jResult);
+
+	env->DeleteLocalRef(jResult);
+
+
+	return v8Result;
+
+}
 Handle<Value> AndroidTitaniumParseModule::unsubscribeFromAllChannels(const Arguments& args)
 {
 	LOGD(TAG, "unsubscribeFromAllChannels()");
@@ -712,58 +863,6 @@ Handle<Value> AndroidTitaniumParseModule::unsubscribeFromAllChannels(const Argum
 	return v8::Undefined();
 
 }
-Handle<Value> AndroidTitaniumParseModule::example(const Arguments& args)
-{
-	LOGD(TAG, "example()");
-	HandleScope scope;
-
-	JNIEnv *env = titanium::JNIScope::getEnv();
-	if (!env) {
-		return titanium::JSException::GetJNIEnvironmentError();
-	}
-	static jmethodID methodID = NULL;
-	if (!methodID) {
-		methodID = env->GetMethodID(AndroidTitaniumParseModule::javaClass, "example", "()Ljava/lang/String;");
-		if (!methodID) {
-			const char *error = "Couldn't find proxy method 'example' with signature '()Ljava/lang/String;'";
-			LOGE(TAG, error);
-				return titanium::JSException::Error(error);
-		}
-	}
-
-	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
-
-	jvalue* jArguments = 0;
-
-	jobject javaProxy = proxy->getJavaObject();
-	jstring jResult = (jstring)env->CallObjectMethodA(javaProxy, methodID, jArguments);
-
-
-
-	if (!JavaObject::useGlobalRefs) {
-		env->DeleteLocalRef(javaProxy);
-	}
-
-
-
-	if (env->ExceptionCheck()) {
-		Handle<Value> jsException = titanium::JSException::fromJavaException();
-		env->ExceptionClear();
-		return jsException;
-	}
-
-	if (jResult == NULL) {
-		return Null();
-	}
-
-	Handle<Value> v8Result = titanium::TypeConverter::javaStringToJsString(env, jResult);
-
-	env->DeleteLocalRef(jResult);
-
-
-	return v8Result;
-
-}
 Handle<Value> AndroidTitaniumParseModule::initParse(const Arguments& args)
 {
 	LOGD(TAG, "initParse()");
@@ -818,6 +917,76 @@ Handle<Value> AndroidTitaniumParseModule::initParse(const Arguments& args)
 			if (isNew_0) {
 				env->DeleteLocalRef(jArguments[0].l);
 			}
+
+
+	if (env->ExceptionCheck()) {
+		titanium::JSException::fromJavaException();
+		env->ExceptionClear();
+	}
+
+
+
+
+	return v8::Undefined();
+
+}
+Handle<Value> AndroidTitaniumParseModule::registerForPushOverwrite(const Arguments& args)
+{
+	LOGD(TAG, "registerForPushOverwrite()");
+	HandleScope scope;
+
+	JNIEnv *env = titanium::JNIScope::getEnv();
+	if (!env) {
+		return titanium::JSException::GetJNIEnvironmentError();
+	}
+	static jmethodID methodID = NULL;
+	if (!methodID) {
+		methodID = env->GetMethodID(AndroidTitaniumParseModule::javaClass, "registerForPushOverwrite", "([Ljava/lang/String;)V");
+		if (!methodID) {
+			const char *error = "Couldn't find proxy method 'registerForPushOverwrite' with signature '([Ljava/lang/String;)V'";
+			LOGE(TAG, error);
+				return titanium::JSException::Error(error);
+		}
+	}
+
+	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
+
+	if (args.Length() < 1) {
+		char errorStringBuffer[100];
+		sprintf(errorStringBuffer, "registerForPushOverwrite: Invalid number of arguments. Expected 1 but got %d", args.Length());
+		return ThrowException(Exception::Error(String::New(errorStringBuffer)));
+	}
+
+	jvalue jArguments[1];
+
+
+
+
+	if (!args[0]->IsArray() && !args[0]->IsNull()) {
+		const char *error = "Invalid value, expected type Array.";
+		LOGE(TAG, error);
+		return titanium::JSException::Error(error);
+	}
+	
+	
+	if (!args[0]->IsNull()) {
+		Local<Array> arg_0 = Local<Array>::Cast(args[0]);
+		jArguments[0].l =
+			titanium::TypeConverter::jsArrayToJavaStringArray(env, arg_0);
+	} else {
+		jArguments[0].l = NULL;
+	}
+
+	jobject javaProxy = proxy->getJavaObject();
+	env->CallVoidMethodA(javaProxy, methodID, jArguments);
+
+	if (!JavaObject::useGlobalRefs) {
+		env->DeleteLocalRef(javaProxy);
+	}
+
+
+
+				env->DeleteLocalRef(jArguments[0].l);
 
 
 	if (env->ExceptionCheck()) {
@@ -900,76 +1069,6 @@ Handle<Value> AndroidTitaniumParseModule::updateObject(const Arguments& args)
 			if (isNew_1) {
 				env->DeleteLocalRef(jArguments[1].l);
 			}
-
-
-	if (env->ExceptionCheck()) {
-		titanium::JSException::fromJavaException();
-		env->ExceptionClear();
-	}
-
-
-
-
-	return v8::Undefined();
-
-}
-Handle<Value> AndroidTitaniumParseModule::registerForPushOverwrite(const Arguments& args)
-{
-	LOGD(TAG, "registerForPushOverwrite()");
-	HandleScope scope;
-
-	JNIEnv *env = titanium::JNIScope::getEnv();
-	if (!env) {
-		return titanium::JSException::GetJNIEnvironmentError();
-	}
-	static jmethodID methodID = NULL;
-	if (!methodID) {
-		methodID = env->GetMethodID(AndroidTitaniumParseModule::javaClass, "registerForPushOverwrite", "([Ljava/lang/String;)V");
-		if (!methodID) {
-			const char *error = "Couldn't find proxy method 'registerForPushOverwrite' with signature '([Ljava/lang/String;)V'";
-			LOGE(TAG, error);
-				return titanium::JSException::Error(error);
-		}
-	}
-
-	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
-
-	if (args.Length() < 1) {
-		char errorStringBuffer[100];
-		sprintf(errorStringBuffer, "registerForPushOverwrite: Invalid number of arguments. Expected 1 but got %d", args.Length());
-		return ThrowException(Exception::Error(String::New(errorStringBuffer)));
-	}
-
-	jvalue jArguments[1];
-
-
-
-
-	if (!args[0]->IsArray() && !args[0]->IsNull()) {
-		const char *error = "Invalid value, expected type Array.";
-		LOGE(TAG, error);
-		return titanium::JSException::Error(error);
-	}
-	
-	
-	if (!args[0]->IsNull()) {
-		Local<Array> arg_0 = Local<Array>::Cast(args[0]);
-		jArguments[0].l =
-			titanium::TypeConverter::jsArrayToJavaStringArray(env, arg_0);
-	} else {
-		jArguments[0].l = NULL;
-	}
-
-	jobject javaProxy = proxy->getJavaObject();
-	env->CallVoidMethodA(javaProxy, methodID, jArguments);
-
-	if (!JavaObject::useGlobalRefs) {
-		env->DeleteLocalRef(javaProxy);
-	}
-
-
-
-				env->DeleteLocalRef(jArguments[0].l);
 
 
 	if (env->ExceptionCheck()) {

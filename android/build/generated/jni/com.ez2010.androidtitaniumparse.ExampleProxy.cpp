@@ -87,9 +87,9 @@ Handle<FunctionTemplate> ExampleProxy::getProxyTemplate()
 	titanium::ProxyFactory::registerProxyPair(javaClass, *proxyTemplate);
 
 	// Method bindings --------------------------------------------------------
-	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "setMessage", ExampleProxy::setMessage);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "getMessage", ExampleProxy::getMessage);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "printMessage", ExampleProxy::printMessage);
+	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "setMessage", ExampleProxy::setMessage);
 
 	Local<ObjectTemplate> prototypeTemplate = proxyTemplate->PrototypeTemplate();
 	Local<ObjectTemplate> instanceTemplate = proxyTemplate->InstanceTemplate();
@@ -112,71 +112,6 @@ Handle<FunctionTemplate> ExampleProxy::getProxyTemplate()
 }
 
 // Methods --------------------------------------------------------------------
-Handle<Value> ExampleProxy::setMessage(const Arguments& args)
-{
-	LOGD(TAG, "setMessage()");
-	HandleScope scope;
-
-	JNIEnv *env = titanium::JNIScope::getEnv();
-	if (!env) {
-		return titanium::JSException::GetJNIEnvironmentError();
-	}
-	static jmethodID methodID = NULL;
-	if (!methodID) {
-		methodID = env->GetMethodID(ExampleProxy::javaClass, "setMessage", "(Ljava/lang/String;)V");
-		if (!methodID) {
-			const char *error = "Couldn't find proxy method 'setMessage' with signature '(Ljava/lang/String;)V'";
-			LOGE(TAG, error);
-				return titanium::JSException::Error(error);
-		}
-	}
-
-	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
-
-	if (args.Length() < 1) {
-		char errorStringBuffer[100];
-		sprintf(errorStringBuffer, "setMessage: Invalid number of arguments. Expected 1 but got %d", args.Length());
-		return ThrowException(Exception::Error(String::New(errorStringBuffer)));
-	}
-
-	jvalue jArguments[1];
-
-
-
-
-	
-	
-	if (!args[0]->IsNull()) {
-		Local<Value> arg_0 = args[0];
-		jArguments[0].l =
-			titanium::TypeConverter::jsValueToJavaString(env, arg_0);
-	} else {
-		jArguments[0].l = NULL;
-	}
-
-	jobject javaProxy = proxy->getJavaObject();
-	env->CallVoidMethodA(javaProxy, methodID, jArguments);
-
-	if (!JavaObject::useGlobalRefs) {
-		env->DeleteLocalRef(javaProxy);
-	}
-
-
-
-				env->DeleteLocalRef(jArguments[0].l);
-
-
-	if (env->ExceptionCheck()) {
-		titanium::JSException::fromJavaException();
-		env->ExceptionClear();
-	}
-
-
-
-
-	return v8::Undefined();
-
-}
 Handle<Value> ExampleProxy::getMessage(const Arguments& args)
 {
 	LOGD(TAG, "getMessage()");
@@ -253,6 +188,71 @@ Handle<Value> ExampleProxy::printMessage(const Arguments& args)
 	if (args.Length() < 1) {
 		char errorStringBuffer[100];
 		sprintf(errorStringBuffer, "printMessage: Invalid number of arguments. Expected 1 but got %d", args.Length());
+		return ThrowException(Exception::Error(String::New(errorStringBuffer)));
+	}
+
+	jvalue jArguments[1];
+
+
+
+
+	
+	
+	if (!args[0]->IsNull()) {
+		Local<Value> arg_0 = args[0];
+		jArguments[0].l =
+			titanium::TypeConverter::jsValueToJavaString(env, arg_0);
+	} else {
+		jArguments[0].l = NULL;
+	}
+
+	jobject javaProxy = proxy->getJavaObject();
+	env->CallVoidMethodA(javaProxy, methodID, jArguments);
+
+	if (!JavaObject::useGlobalRefs) {
+		env->DeleteLocalRef(javaProxy);
+	}
+
+
+
+				env->DeleteLocalRef(jArguments[0].l);
+
+
+	if (env->ExceptionCheck()) {
+		titanium::JSException::fromJavaException();
+		env->ExceptionClear();
+	}
+
+
+
+
+	return v8::Undefined();
+
+}
+Handle<Value> ExampleProxy::setMessage(const Arguments& args)
+{
+	LOGD(TAG, "setMessage()");
+	HandleScope scope;
+
+	JNIEnv *env = titanium::JNIScope::getEnv();
+	if (!env) {
+		return titanium::JSException::GetJNIEnvironmentError();
+	}
+	static jmethodID methodID = NULL;
+	if (!methodID) {
+		methodID = env->GetMethodID(ExampleProxy::javaClass, "setMessage", "(Ljava/lang/String;)V");
+		if (!methodID) {
+			const char *error = "Couldn't find proxy method 'setMessage' with signature '(Ljava/lang/String;)V'";
+			LOGE(TAG, error);
+				return titanium::JSException::Error(error);
+		}
+	}
+
+	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
+
+	if (args.Length() < 1) {
+		char errorStringBuffer[100];
+		sprintf(errorStringBuffer, "setMessage: Invalid number of arguments. Expected 1 but got %d", args.Length());
 		return ThrowException(Exception::Error(String::New(errorStringBuffer)));
 	}
 

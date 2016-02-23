@@ -30,17 +30,18 @@ public:
 
 private:
 	// Methods -----------------------------------------------------------
-	static v8::Handle<v8::Value> deleteObject(const v8::Arguments&);
 	static v8::Handle<v8::Value> createObject(const v8::Arguments&);
+	static v8::Handle<v8::Value> deleteObject(const v8::Arguments&);
 	static v8::Handle<v8::Value> registerForPush(const v8::Arguments&);
 	static v8::Handle<v8::Value> unsubscribeFromPush(const v8::Arguments&);
+	static v8::Handle<v8::Value> registerForMultiplePushChannel(const v8::Arguments&);
 	static v8::Handle<v8::Value> pushChannelList(const v8::Arguments&);
 	static v8::Handle<v8::Value> registerForSinglePushChannel(const v8::Arguments&);
-	static v8::Handle<v8::Value> unsubscribeFromAllChannels(const v8::Arguments&);
 	static v8::Handle<v8::Value> example(const v8::Arguments&);
+	static v8::Handle<v8::Value> unsubscribeFromAllChannels(const v8::Arguments&);
 	static v8::Handle<v8::Value> initParse(const v8::Arguments&);
-	static v8::Handle<v8::Value> updateObject(const v8::Arguments&);
 	static v8::Handle<v8::Value> registerForPushOverwrite(const v8::Arguments&);
+	static v8::Handle<v8::Value> updateObject(const v8::Arguments&);
 	static v8::Handle<v8::Value> findObjects(const v8::Arguments&);
 
 	// Dynamic property accessors ----------------------------------------

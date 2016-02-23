@@ -37,3 +37,36 @@ if (Ti.Platform.name == "android") {
 	win.add(proxy);
 }
 
+
+/*
+ * Add these two lines to tiapp.xml first
+ * 
+ *     <property name="Parse_AppId">YOUR APP ID</property>
+ *     <property name="Parse_ClientKey">YOUR CLIENT KEY</property> 
+ * 
+ * 
+ */
+
+var Parse = require("com.ez2010.androidtitaniumparse");
+var app_id = "YOUR APP ID";  // Still need add property to tiapp.xml as mentioned above
+var client_key = "YOUT CLIENT KEY"; // Still need add property to tiapp.xml as mentioned above
+
+if (Parse) {
+  Parse.initParse({
+    appId: app_id,
+    clientKey: client_key
+  });
+  
+  //Add a single channel to existing channels
+  Parse.registerForPush("pushDeviceToken", "testcitysingle", function(e){console.log(e);});
+  
+  //Register to a single channel and override old channels
+  Parse.registerForSinglePushChannel("pushDeviceToken", "testcity3", function(e){console.log(e);});
+  
+  //Register to multiple channels and override old channels
+  Parse.registerForMultiplePushChannel("pushDeviceToken", ["testcity1", "testcity2"], function(e){console.log(e);});
+  
+}
+
+
+
