@@ -4,8 +4,8 @@
 This module is based on the module created by <a href="https://github.com/ndizazzo/android-parse-titanium-module">Nick</a>
 with changed below
 
-1. Using new Titanium SDK module structure. (Titanium SDK3.5.1) - refer to the steps below for upgrade to different SDK.
-2. Using new Parse Module 1.9.2
+1. Using new Titanium SDK module structure. (Titanium SDK5.1.2.GA).
+2. Using new Parse Module 1.13.0
 3. Add 2 new functions
 
 <b>public void registerForSinglePushChannel()</b>
@@ -36,7 +36,11 @@ Some how, the compile need these 2 folder but Appcelerator Studio does not creat
     1. android/build/docs
     2. android/build/.apt_generated (Keep the ".", it is a invisible folder for Mac. Titanium Studio might not need this.)
 
-<b>5. Parse Initial </b>
+<b>5. Check external .jar path </b>
+1. Import module project to Appcelerator SDK
+2. In Appcelerator Studio, go to Project/Properties. Click "Java Build Path". Remove invalid jar path. Re add all jar files that saved in module project lib folder.
+
+<b>6. Parse Initial </b>
 The module is good to compile now. But if you test it with a new App, remember to put these properties into tiapp.xml with Your Own Parse Keys.
 
     <property name="Parse_AppId">YourOwnParseAppID</property>

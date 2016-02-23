@@ -223,6 +223,15 @@ public class ParseSingleton {
   }
 
   public void UnsubscribeFromAllChannels(){
+	// Get current channels
+	List<String> currentChannels = ChannelSubscriptionList();
+	
+	if (currentChannels != null) {
+	  for (String c : currentChannels) {
+		UnsubscribeFromPushChannel(c);
+	  }
+	}
+/*	
 	  //ParsePush.setChannel(channelName);
 	  ArrayList<String> emptyList = new ArrayList<String>();
 
@@ -230,6 +239,7 @@ public class ParseSingleton {
 	  ParseInstallation currentInstallation = ParseInstallation.getCurrentInstallation();
 	  currentInstallation.put("channels", emptyList);
 	  currentInstallation.saveEventually();
+	  */
   }
 
   public List<String> ChannelSubscriptionList() {
