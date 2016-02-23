@@ -1,4 +1,4 @@
-# Android Parse Module for Titanium3.5+
+# Android Parse Module for Appcelerator Titanium SDK 5.1.2.GA
 
 <h2>About the Module</h2>
 This module is based on the module created by <a href="https://github.com/ndizazzo/android-parse-titanium-module">Nick</a>
