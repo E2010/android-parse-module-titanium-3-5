@@ -1,4 +1,4 @@
-/var/folders/sc/qhz6wvtd0tb2l5xt4rjfxgsh0000gp/T//eileenzhang/android-titanium-parse-generated/obj/local/armeabi/objs/com.ez2010.androidtitaniumparse/__/AndroidTitaniumParseBootstrap.o: \
+/Users/eileenzhang/Documents/ASW/android-titanium-parse/android/build/generated/obj/local/armeabi/objs/com.ez2010.androidtitaniumparse/__/AndroidTitaniumParseBootstrap.o: \
  jni/../AndroidTitaniumParseBootstrap.cpp \
  /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/jni.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/sys/cdefs.h \
@@ -18,8 +18,8 @@
  /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/stl/config/_native_headers.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/stl/_epilog.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/stl/_config_compat_post.h \
- /Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/v8.h \
- /Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/v8stdint.h \
+ /Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/v8.h \
+ /Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/v8stdint.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/stddef.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/stdio.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/../include/stdio.h \
@@ -35,7 +35,7 @@
  /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/linux/types.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/machine/kernel.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/sys/sysmacros.h \
- /Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/AndroidUtil.h \
+ /Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/AndroidUtil.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/android/log.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/stdlib.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/../include/stdlib.h \
@@ -45,7 +45,7 @@
  /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/alloca.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/strings.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/memory.h \
- /Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/KrollBindings.h \
+ /Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/KrollBindings.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/map \
  /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/stl/_prolog.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/stl/debug/_debug.h \
@@ -159,15 +159,15 @@
  /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/stl/_vector.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/stl/_vector.c \
  /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/stl/_bvector.h \
- /Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/V8Util.h \
+ /Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/V8Util.h \
  jni/../BootstrapJS.cpp jni/../KrollGeneratedBindings.cpp \
  jni/com.ez2010.androidtitaniumparse.AndroidTitaniumParseModule.h \
- /Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/Proxy.h \
- /Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/JavaObject.h \
+ /Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/Proxy.h \
+ /Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/JavaObject.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/assert.h \
  /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/../include/assert.h \
- /Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/EventEmitter.h \
- /Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/NativeObject.h \
+ /Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/EventEmitter.h \
+ /Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/NativeObject.h \
  jni/com.ez2010.androidtitaniumparse.ExampleProxy.h
 
 /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/jni.h:
@@ -206,9 +206,9 @@
 
 /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/stl/_config_compat_post.h:
 
-/Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/v8.h:
+/Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/v8.h:
 
-/Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/v8stdint.h:
+/Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/v8stdint.h:
 
 /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/stddef.h:
 
@@ -240,7 +240,7 @@
 
 /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/sys/sysmacros.h:
 
-/Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/AndroidUtil.h:
+/Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/AndroidUtil.h:
 
 /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/android/log.h:
 
@@ -260,7 +260,7 @@
 
 /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/memory.h:
 
-/Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/KrollBindings.h:
+/Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/KrollBindings.h:
 
 /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/map:
 
@@ -488,7 +488,7 @@
 
 /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/stl/_bvector.h:
 
-/Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/V8Util.h:
+/Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/V8Util.h:
 
 jni/../BootstrapJS.cpp:
 
@@ -496,16 +496,16 @@ jni/../KrollGeneratedBindings.cpp:
 
 jni/com.ez2010.androidtitaniumparse.AndroidTitaniumParseModule.h:
 
-/Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/Proxy.h:
+/Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/Proxy.h:
 
-/Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/JavaObject.h:
+/Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/JavaObject.h:
 
 /Users/eileenzhang/Documents/tools/android-ndk10/sources/cxx-stl/stlport/stlport/assert.h:
 
 /Users/eileenzhang/Documents/tools/android-ndk10/platforms/android-3/arch-arm/usr/include/../include/assert.h:
 
-/Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/EventEmitter.h:
+/Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/EventEmitter.h:
 
-/Library/Application\ Support/Titanium/mobilesdk/osx/5.1.2.GA/android/native/include/NativeObject.h:
+/Library/Application\ Support/Titanium/mobilesdk/osx/5.3.1.GA/android/native/include/NativeObject.h:
 
 jni/com.ez2010.androidtitaniumparse.ExampleProxy.h:

@@ -39,8 +39,8 @@ private:
 	static v8::Handle<v8::Value> registerForSinglePushChannel(const v8::Arguments&);
 	static v8::Handle<v8::Value> example(const v8::Arguments&);
 	static v8::Handle<v8::Value> unsubscribeFromAllChannels(const v8::Arguments&);
+	static v8::Handle<v8::Value> getStatusBarHeight(const v8::Arguments&);
 	static v8::Handle<v8::Value> initParse(const v8::Arguments&);
-	static v8::Handle<v8::Value> registerForPushOverwrite(const v8::Arguments&);
 	static v8::Handle<v8::Value> updateObject(const v8::Arguments&);
 	static v8::Handle<v8::Value> findObjects(const v8::Arguments&);
 

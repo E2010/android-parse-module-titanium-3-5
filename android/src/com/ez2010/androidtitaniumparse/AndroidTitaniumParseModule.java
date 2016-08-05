@@ -61,9 +61,11 @@ public class AndroidTitaniumParseModule extends KrollModule
 		// started when a push notification is received
 		String propertyAppId = app.getAppProperties().getString(ParseSingleton.PROPERTY_APP_ID, "");
 		String propertyClientKey = app.getAppProperties().getString(ParseSingleton.PROPERTY_CLIENT_KEY, "");
+		String propertyServerUrl = app.getAppProperties().getString(ParseSingleton.PROPERTY_SERVER_URL, "");
 
 		// Invoke the Parse SDK Initialize method
-		parseSingleton.InitializeParse(propertyAppId, propertyClientKey, app);
+		//parseSingleton.InitializeParse(propertyAppId, propertyClientKey, app);
+		parseSingleton.InitializeParseWithConfig(propertyAppId, propertyClientKey, propertyServerUrl, app);
 	}
 
 	@Kroll.method
@@ -72,6 +74,17 @@ public class AndroidTitaniumParseModule extends KrollModule
 		// I'm putting this here so the application context is not null when the EnablePush method is run.
 		parseSingleton.EnablePush(TiApplication.getInstance());
 	}
+
+    // Methods
+	@Kroll.method
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = this.getActivity().getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = this.getActivity().getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
 
 	@Kroll.method
 	public void findObjects(String className, HashMap[] conditions, final KrollFunction applicationCallback) {

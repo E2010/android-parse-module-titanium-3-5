@@ -63,6 +63,7 @@ public class ParseSingleton {
 
   public static String PROPERTY_APP_ID = "Parse_AppId";
   public static String PROPERTY_CLIENT_KEY = "Parse_ClientKey";
+  public static String PROPERTY_SERVER_URL = "Parse_ServerUrl";
 
   protected ParseSingleton() {
   }
@@ -101,6 +102,39 @@ public class ParseSingleton {
       Log.e(TAG, "Parse has already been initialized!");
     }
   }
+  
+  // ClientKey is null no matter what passed
+  public void InitializeParseWithConfig(String appId, String clientKey, String serverUrl, TiApplication application) {
+	    Context appContext = application.getApplicationContext();
+
+	    if (appContext == null) {
+	      Log.e(TAG, "Application context is null, cannot continue...");
+	      return;
+	    } else if (appId != null && appId.isEmpty()) {
+	      Log.e(TAG, "Application key is required! Parse has NOT been initialized.");
+	      return;
+	    } else if (serverUrl != null && serverUrl.isEmpty()) {
+		  Log.e(TAG, "Server Url is required! Parse has NOT been initialized.");
+		  return;
+		}
+
+	    if (!initialized) {
+	      Log.d(TAG, "Initializing with: '" + appId + "' and '" + serverUrl + "'.");
+	      
+	      Parse.initialize(new Parse.Configuration.Builder(appContext)
+	        .applicationId(appId)
+	        .clientKey(null)
+	        .server(serverUrl)
+	        .build());
+
+	      initialized = true;
+	    }
+	    else
+	    {
+	      Log.e(TAG, "Parse has already been initialized!");
+	    }
+  }
+
 
   public static void EnablePush(TiApplication app) {
     Context appContext = app.getApplicationContext();

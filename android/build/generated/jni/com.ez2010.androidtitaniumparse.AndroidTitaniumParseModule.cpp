@@ -99,8 +99,8 @@ Handle<FunctionTemplate> AndroidTitaniumParseModule::getProxyTemplate()
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "registerForSinglePushChannel", AndroidTitaniumParseModule::registerForSinglePushChannel);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "example", AndroidTitaniumParseModule::example);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "unsubscribeFromAllChannels", AndroidTitaniumParseModule::unsubscribeFromAllChannels);
+	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "getStatusBarHeight", AndroidTitaniumParseModule::getStatusBarHeight);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "initParse", AndroidTitaniumParseModule::initParse);
-	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "registerForPushOverwrite", AndroidTitaniumParseModule::registerForPushOverwrite);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "updateObject", AndroidTitaniumParseModule::updateObject);
 	DEFINE_PROTOTYPE_METHOD(proxyTemplate, "findObjects", AndroidTitaniumParseModule::findObjects);
 
@@ -863,6 +863,54 @@ Handle<Value> AndroidTitaniumParseModule::unsubscribeFromAllChannels(const Argum
 	return v8::Undefined();
 
 }
+Handle<Value> AndroidTitaniumParseModule::getStatusBarHeight(const Arguments& args)
+{
+	LOGD(TAG, "getStatusBarHeight()");
+	HandleScope scope;
+
+	JNIEnv *env = titanium::JNIScope::getEnv();
+	if (!env) {
+		return titanium::JSException::GetJNIEnvironmentError();
+	}
+	static jmethodID methodID = NULL;
+	if (!methodID) {
+		methodID = env->GetMethodID(AndroidTitaniumParseModule::javaClass, "getStatusBarHeight", "()I");
+		if (!methodID) {
+			const char *error = "Couldn't find proxy method 'getStatusBarHeight' with signature '()I'";
+			LOGE(TAG, error);
+				return titanium::JSException::Error(error);
+		}
+	}
+
+	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
+
+	jvalue* jArguments = 0;
+
+	jobject javaProxy = proxy->getJavaObject();
+	jint jResult = (jint)env->CallIntMethodA(javaProxy, methodID, jArguments);
+
+
+
+	if (!JavaObject::useGlobalRefs) {
+		env->DeleteLocalRef(javaProxy);
+	}
+
+
+
+	if (env->ExceptionCheck()) {
+		Handle<Value> jsException = titanium::JSException::fromJavaException();
+		env->ExceptionClear();
+		return jsException;
+	}
+
+
+	Handle<Number> v8Result = titanium::TypeConverter::javaIntToJsNumber(env, jResult);
+
+
+
+	return v8Result;
+
+}
 Handle<Value> AndroidTitaniumParseModule::initParse(const Arguments& args)
 {
 	LOGD(TAG, "initParse()");
@@ -917,76 +965,6 @@ Handle<Value> AndroidTitaniumParseModule::initParse(const Arguments& args)
 			if (isNew_0) {
 				env->DeleteLocalRef(jArguments[0].l);
 			}
-
-
-	if (env->ExceptionCheck()) {
-		titanium::JSException::fromJavaException();
-		env->ExceptionClear();
-	}
-
-
-
-
-	return v8::Undefined();
-
-}
-Handle<Value> AndroidTitaniumParseModule::registerForPushOverwrite(const Arguments& args)
-{
-	LOGD(TAG, "registerForPushOverwrite()");
-	HandleScope scope;
-
-	JNIEnv *env = titanium::JNIScope::getEnv();
-	if (!env) {
-		return titanium::JSException::GetJNIEnvironmentError();
-	}
-	static jmethodID methodID = NULL;
-	if (!methodID) {
-		methodID = env->GetMethodID(AndroidTitaniumParseModule::javaClass, "registerForPushOverwrite", "([Ljava/lang/String;)V");
-		if (!methodID) {
-			const char *error = "Couldn't find proxy method 'registerForPushOverwrite' with signature '([Ljava/lang/String;)V'";
-			LOGE(TAG, error);
-				return titanium::JSException::Error(error);
-		}
-	}
-
-	titanium::Proxy* proxy = titanium::Proxy::unwrap(args.Holder());
-
-	if (args.Length() < 1) {
-		char errorStringBuffer[100];
-		sprintf(errorStringBuffer, "registerForPushOverwrite: Invalid number of arguments. Expected 1 but got %d", args.Length());
-		return ThrowException(Exception::Error(String::New(errorStringBuffer)));
-	}
-
-	jvalue jArguments[1];
-
-
-
-
-	if (!args[0]->IsArray() && !args[0]->IsNull()) {
-		const char *error = "Invalid value, expected type Array.";
-		LOGE(TAG, error);
-		return titanium::JSException::Error(error);
-	}
-	
-	
-	if (!args[0]->IsNull()) {
-		Local<Array> arg_0 = Local<Array>::Cast(args[0]);
-		jArguments[0].l =
-			titanium::TypeConverter::jsArrayToJavaStringArray(env, arg_0);
-	} else {
-		jArguments[0].l = NULL;
-	}
-
-	jobject javaProxy = proxy->getJavaObject();
-	env->CallVoidMethodA(javaProxy, methodID, jArguments);
-
-	if (!JavaObject::useGlobalRefs) {
-		env->DeleteLocalRef(javaProxy);
-	}
-
-
-
-				env->DeleteLocalRef(jArguments[0].l);
 
 
 	if (env->ExceptionCheck()) {
