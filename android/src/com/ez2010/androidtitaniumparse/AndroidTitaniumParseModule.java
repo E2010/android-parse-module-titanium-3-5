@@ -73,6 +73,17 @@ public class AndroidTitaniumParseModule extends KrollModule
 		parseSingleton.EnablePush(TiApplication.getInstance());
 	}
 
+    // Methods
+	@Kroll.method
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = this.getActivity().getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = this.getActivity().getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
 	@Kroll.method
 	public void findObjects(String className, HashMap[] conditions, final KrollFunction applicationCallback) {
 		FindCallback<ParseObject> parseCallback = new FindCallback<ParseObject>() {

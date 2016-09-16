@@ -24,25 +24,23 @@ function moduleBootstrap(moduleBinding) {
 		invocationAPIs.push({ namespace: namespace, api: api });
 	}
 
-		addInvocationAPI(module, "AndroidTitaniumParse", "AndroidTitaniumParse", "createExample");
+	addInvocationAPI(module, "AndroidTitaniumParse", "AndroidTitaniumParse", "createExample");
+		if (!("__propertiesDefined__" in module)) {Object.defineProperties(module, {
+"Example": {
+get: function() {
+var Example =  lazyGet(this, "com.ez2010.androidtitaniumparse.ExampleProxy", "Example", "Example");
+return Example;
+},
+configurable: true
+},
 
-			if (!("__propertiesDefined__" in module)) {		
-		Object.defineProperties(module, {
-			"Example": {
-				get: function() {
-					var Example = lazyGet(this, "com.ez2010.androidtitaniumparse.ExampleProxy", "Example", "Example");
-					return Example;
-				},
-				configurable: true
-			},
-		
-		});
-		module.constructor.prototype.createExample = function() {
-			return new module.Example(arguments);
-		}
-		}
-		module.__propertiesDefined__ = true;
-		return module;
+});
+module.constructor.prototype.createExample = function() {
+return new module["Example"](arguments);
+}
+}
+module.__propertiesDefined__ = true;
+return module;
 
 }
 exports.bootstrap = moduleBootstrap;
