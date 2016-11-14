@@ -74,8 +74,14 @@ public class AndroidTitaniumParseModule extends KrollModule
 		// I'm putting this here so the application context is not null when the EnablePush method is run.
 		parseSingleton.EnablePush(TiApplication.getInstance());
 	}
+	
 
-    // Methods
+	@Kroll.method
+	public void initParseWithConfig(HashMap initOpts) { // This method is only for keeping the same interface with iOS version
+	  initParse(initOpts);
+	}
+	
+	// Methods
 	@Kroll.method
     public int getStatusBarHeight() {
         int result = 0;
