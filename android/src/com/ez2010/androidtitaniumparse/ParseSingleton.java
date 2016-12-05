@@ -220,6 +220,7 @@ public class ParseSingleton {
   }
 
   public void SubscribeToMultiplePushChannel(String[] channels){
+	  /*
 	// Get current channels
 	List<String> currentChannels = ChannelSubscriptionList();
 	
@@ -241,15 +242,16 @@ public class ParseSingleton {
 	
 	for (String nc: newChannels) {
 	  SubscribeToPushChannel(nc);
-	}
-	  /*
+	}*/
+	  
 	  List<String> channelList = new ArrayList<String>();
 	  //channelList.add(channelName);
 	  channelList.addAll(Arrays.asList(channels));
 	  
 	  ParseInstallation currentInstallation = ParseInstallation.getCurrentInstallation();
-	  currentInstallation.put("channelsmultiple", channelList);
-	  currentInstallation.saveEventually();*/
+	  currentInstallation.put("channels", channelList);
+	  //currentInstallation.saveEventually();
+	  currentInstallation.saveInBackground();
   }
 
   public void UnsubscribeFromPushChannel(String channelName) {

@@ -248,6 +248,16 @@ public class AndroidTitaniumParseModule extends KrollModule
 
 	@Kroll.method
 	public void registerForMultiplePushChannel(String deviceToken, String channels, KrollFunction applicationCallback) {
+		registerForMultiplePushChannelString(deviceToken, channels, applicationCallback);
+	}
+
+	@Kroll.method
+	public void registerForMultiplePushChannel(String deviceToken, String[] channels, KrollFunction applicationCallback) {
+		registerForMultiplePushChannelArray(deviceToken, channels, applicationCallback);
+	}
+	
+	@Kroll.method
+	public void registerForMultiplePushChannelString(String deviceToken, String channels, KrollFunction applicationCallback) {
 		Log.d(LCAT, "String String Callback");
 		Log.d(LCAT, channels);
 		
@@ -257,7 +267,7 @@ public class AndroidTitaniumParseModule extends KrollModule
 			Log.d(LCAT, s);
 		}
 		
-		registerForMultiplePushChannel(deviceToken, channelNames, applicationCallback);
+		registerForMultiplePushChannelArray(deviceToken, channelNames, applicationCallback);
 
 		// NOTE: deviceToken is not used, but in order to maintain call
 		// compatibility with the iOS module, I'm leaving it as a parameter
@@ -270,7 +280,7 @@ public class AndroidTitaniumParseModule extends KrollModule
 	}
 
 	@Kroll.method
-	public void registerForMultiplePushChannel(String deviceToken, String[] channelNames, KrollFunction applicationCallback) {
+	public void registerForMultiplePushChannelArray(String deviceToken, String[] channelNames, KrollFunction applicationCallback) {
 		Log.d(LCAT, "String StringArray Callback");
 		for ( String s: channelNames){
 			Log.d(LCAT, s);
