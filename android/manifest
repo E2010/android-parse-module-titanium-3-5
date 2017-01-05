@@ -2,9 +2,9 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 2.1
-apiversion: 2
-architectures: armeabi armeabi-v7a x86
+version: 3.0
+apiversion: 3
+architectures: armeabi-v7a x86
 description: android-titanium-parse
 author: Eileen
 license: Specify your license
@@ -15,4 +15,4 @@ name: android-titanium-parse
 moduleid: com.ez2010.androidtitaniumparse
 guid: 767beaf2-71f6-4d7c-86c7-e8d13f50ef26
 platform: android
-minsdk: 3.5.1.GA
+minsdk: 6.0.0.GA
