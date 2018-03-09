@@ -55,6 +55,7 @@ import org.appcelerator.kroll.common.Log;
 import android.app.Activity;
 import android.content.Context;
 import android.provider.Settings.Secure;
+import android.text.TextUtils;
 
 public class ParseSingleton {
   private static final String TAG = "ParseSingleton";
@@ -103,7 +104,6 @@ public class ParseSingleton {
     }
   }
   
-  // ClientKey is null no matter what passed
   public void InitializeParseWithConfig(String appId, String clientKey, String serverUrl, TiApplication application) {
 	    Context appContext = application.getApplicationContext();
 
@@ -119,15 +119,23 @@ public class ParseSingleton {
 		}
 
 	    if (!initialized) {
-	      Log.d(TAG, "Initializing with: '" + appId + "' and '" + serverUrl + "'.");
-	      
-	      Parse.initialize(new Parse.Configuration.Builder(appContext)
-	        .applicationId(appId)
-	        .clientKey(null)
-	        .server(serverUrl)
-	        .build());
+	      if (TextUtils.isEmpty(clientKey)) {
+		      Log.d(TAG, "Initializing with: '" + appId + "' and '" + serverUrl + "'.");
+		      Parse.initialize(new Parse.Configuration.Builder(appContext)
+		        .applicationId(appId)
+		        .server(serverUrl)
+		        .build());
+	      } else {
+		      Log.d(TAG, "Initializing with: '" + appId + "' and '" + clientKey + "' and '" + serverUrl + "'.");
+		      Parse.initialize(new Parse.Configuration.Builder(appContext)
+		        .applicationId(appId)
+		        .clientKey(clientKey)
+		        .server(serverUrl)
+		        .build());
+	      }
 
 	      initialized = true;
+	      
 	    }
 	    else
 	    {
@@ -191,6 +199,12 @@ public class ParseSingleton {
     else {
       return false;
     }
+  }
+  
+  public void SetUserEmail(String email) {
+	  ParseInstallation currentInstallation = ParseInstallation.getCurrentInstallation();
+	  currentInstallation.put("userEmail", email);
+	  currentInstallation.saveInBackground();
   }
 
   public void SubscribeToPushChannel(String channelName) {

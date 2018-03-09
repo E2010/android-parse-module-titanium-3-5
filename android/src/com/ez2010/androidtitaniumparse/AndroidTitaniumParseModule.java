@@ -11,9 +11,11 @@ package com.ez2010.androidtitaniumparse;
 import java.util.HashMap;
 import java.util.List;
 
+
 //import com.ndizazzo.parsemodule.ParseDataConversions;
 //import com.ndizazzo.parsemodule.ParseSingleton;
 import com.parse.Parse;
+import com.parse.ParseInstallation;
 import com.parse.ParseObject;
 import com.parse.FindCallback;
 import com.parse.SaveCallback;
@@ -62,10 +64,26 @@ public class AndroidTitaniumParseModule extends KrollModule
 		String propertyAppId = app.getAppProperties().getString(ParseSingleton.PROPERTY_APP_ID, "");
 		String propertyClientKey = app.getAppProperties().getString(ParseSingleton.PROPERTY_CLIENT_KEY, "");
 		String propertyServerUrl = app.getAppProperties().getString(ParseSingleton.PROPERTY_SERVER_URL, "");
+		
+		//String propertyAppId = "ec1b11ca-813c-414a-adfd-982580d30a2f";
+		//String propertyServerUrl = "https://parse.buddy.com/parse/";
+		//String propertyAppId = "xSXscePT9u9LMJrdLI09o3TTAjbZFxU0Kduh815l";
+		//String propertyServerUrl = "http://10.4.3.183:1337/parse//";
 
 		// Invoke the Parse SDK Initialize method
-		//parseSingleton.InitializeParse(propertyAppId, propertyClientKey, app);
+		//Log.d(LCAT, "Parse module initilized");
+		//Log.d(LCAT, "appId: " + propertyAppId + ", serverUrl: " + propertyServerUrl);
 		parseSingleton.InitializeParseWithConfig(propertyAppId, propertyClientKey, propertyServerUrl, app);
+		/*
+	    Parse.initialize(new Parse.Configuration.Builder(app)
+        .applicationId(propertyAppId)
+        .server(propertyServerUrl)
+        .build());
+	    
+	    ParseInstallation.getCurrentInstallation().saveInBackground();
+	    */
+	    
+	    
 	}
 
 	@Kroll.method
@@ -326,6 +344,12 @@ public class AndroidTitaniumParseModule extends KrollModule
 		applicationCallback.callAsync(getKrollObject(), results);
 	}
 
+	@Kroll.method
+	public void setUserEmail(String email) {
+		Log.d(LCAT, "set user email: " + email);
+		parseSingleton.SetUserEmail(email);
+	}
+	
 	// Methods
 	@Kroll.method
 	public String example()

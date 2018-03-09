@@ -42,6 +42,4 @@
 			<uses-permission android:name="${tiapp.properties['id']}.permission.C2D_MESSAGE" />
 		</manifest>
 	</android>
-	<mobileweb>
-	</mobileweb>
 </ti:module>
